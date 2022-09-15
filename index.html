@@ -8,10 +8,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body background="background.jpg">
+    <body>
         <h1><b>Voice Command Canvas</b></h1>
-        <span id="status"></span> 
-        <button onclick="start();" class="btn btn-success">Draw</button>
+        <button id="btn" onclick="start();" class="btn btn-success">Start</button>
+        <br><br>
+        <button onclick="clearCanvas();" class="btn btn-success">Clear Canvas</button>
+        <br><br>
+        <span id="status" class="btn btn-danger span"></span> 
         <br><br>
         <script src="main.js"></script>
     </body>

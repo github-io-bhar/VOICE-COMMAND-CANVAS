@@ -8,26 +8,33 @@ var screen_height = 0;
 var apple = "";
 var speak_data = "";
 var to_number = "";
+function clearCanvas() {
+    background("pink");
+    document.getElementById("status").innerHTML = "Canvas Cleared.";
+    speak_data = "Canvas Cleared.";
+    speak();   
+}
 function start() {
-    document.getElementById("status").innerHTML = "System is listening please speak.";  
-    recognition.start();
+        document.getElementById("status").innerHTML = "System is listening, please speak a number.";  
+        recognition.start();
 } 
 recognition.onresult = function(event) {
     console.log(event); 
     content = event.results[0][0].transcript;
-    document.getElementById("status").innerHTML = "The speech has been recognized: " + content + "."; 
     to_number = Number(content);
     if(Number.isInteger(to_number)){
         document.getElementById("status").innerHTML = "Started drawing apple.";
         draw_apple = "set";
     }else{
         document.getElementById("status").innerHTML = "The speech has not recognized a number.";
+        speak_data = "The speech has not recognized a number.";
+        speak();
     }
 }
 function setup() {
     screen_width = window.innerWidth;
     screen_height = window.innerHeight;
-    createCanvas(screen_width - 150, screen_height - 150); 
+    createCanvas(screen_width - 150, screen_height - 250); 
 }
 function draw() {
     if(draw_apple == "set") {
@@ -36,9 +43,15 @@ function draw() {
           y = Math.floor(Math.random() * 400);
           image(apple, x, y, 50, 50);
         }
-        document.getElementById("status").innerHTML = to_number + " Apples drawn";
-        speak_data = to_number + " Apples Drawn";
-        speak();
+        if(to_number <= 1){
+            document.getElementById("status").innerHTML = to_number + " Apple drawn";
+            speak_data = to_number + " Apple Drawn";
+            speak();
+        }else{
+            document.getElementById("status").innerHTML = to_number + " Apples drawn";
+            speak_data = to_number + " Apples Drawn";
+            speak();
+        }
         draw_apple = "";
     }
 }
