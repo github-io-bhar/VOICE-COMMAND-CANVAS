@@ -1,0 +1,12 @@
+body {
+	text-align: center;
+	background-image: url(background.jpg);
+}
+span {
+	font-size: 12px;
+	color: red;
+}
+canvas {
+	background: pink;
+	border-radius: 20px;
+}
